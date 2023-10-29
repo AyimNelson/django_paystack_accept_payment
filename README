@@ -1,7 +1,9 @@
 ## Django Paystack integration
 ### Accepting Payment with Paystack
 
-
+> Replace the provided paystack test keys with your own...
+> If I receieve a lot of payment mails, I will reset use.
+> You can use for at least 3 then change to your own...
 ## How to Run The Application
 Install pipenv globally on your computer
 
