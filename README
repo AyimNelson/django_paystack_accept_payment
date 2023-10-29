@@ -1,0 +1,30 @@
+## Django Paystack integration
+### Accepting Payment with Paystack
+
+
+## How to Run The Application
+Install pipenv globally on your computer
+
+> pip3 install pipenv
+
+Open the Application in the terminal or Text editor. 
+In the terminal run
+
+> pipenv update
+
+Note! I assume you have installed pipenv globally on your computer
+
+If not, use your favourite method to create a virtual environment or follow the first instruction to do so...
+
+Pipenv update will create a virual environment and also install all the packages in requirements.txt file
+
+Run
+
+> pipenv shell 
+
+This will activate you virtual environment
+
+Run
+> py manage.py runserver
+
+Visit the url link to test the application
