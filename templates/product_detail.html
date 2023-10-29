@@ -1,0 +1,52 @@
+{% for message in messages %}
+    Message: {{message}}
+{% endfor %}
+
+<h2>Product Details</h2>
+
+<h3>{{product.name}}</h3>
+<p>{{product.description}}</p>
+
+{% if request.user.is_authenticated %}
+<form method="POST" action="{{ plan.get_absolute_url }}">
+    {% csrf_token %}
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <button type="button" onclick="payWithPaystack()" class="btn btn-primary py-3 px-4 mr-3">
+        Pay ¢{{product.price}}
+    </button>
+</form>
+<script>
+    function payWithPaystack() {
+        var handler = PaystackPop.setup({
+            key: '{{ paystack_public_key }}',
+            email: '{{ user_mail }}',
+            amount: '{{ amount }}',
+            currency: 'GHS', // Replace with your preferred currency
+            metadata: {
+                product_id: '{{ product.pk }}', // Add the product id ID as metadata (It can be cart_id for e-commerce)
+                user_id: '{{ request.user.pk }}' // Add the user ID as metadata
+            },
+            // Generate a unique reference dynamically
+            callback: function (response) {
+                // Handle the callback response
+                if (response.status === 'success') {
+                    // Payment successful
+                    // Redirect the user to a success page or perform any necessary actions
+                    window.location.href = '/success/?reference=' + response.reference;
+                } else {
+                    // Payment failed
+                    // Redirect the user to a failure page or display an error message
+                    window.location.href = '/failure/';
+                }
+            },
+
+
+        });
+        handler.openIframe();
+    }
+</script>
+{% else %}
+<div>
+    <a href="{% url 'login' %}">Login to buy now</a>
+</div>
+{% endif %}

@@ -1,0 +1,9 @@
+<h2>All Products</h2>
+{% for message in messages %}
+    Message: {{message}}
+{% endfor %}
+<ul>
+    {% for product in products %}
+    <li>{{product.name}} - {{product.amount}}<a href="{{product.get_absolute_url}}">View</a></li>
+    {% endfor %}
+</ul>
